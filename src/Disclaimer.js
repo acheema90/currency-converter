@@ -29,12 +29,12 @@ class Disclaimer extends Component {
                     this.state.showModal ? (
                         <Modal>
                             <div>
-                                <h2>Where is the data coming from?</h2>
-                                <p>
+                                <h2 className="disclaimer-heading">Where is the data coming from?</h2>
+                                <p className="disclaimer-text">
                                     Exchange rate data delivered by the Fixer API is collected from over 15 reliable data sources,
                                     every minute. Sources include banks and financial data providers.
                                 </p>
-                                <button onClick={this.toggleModal}>OK</button>
+                                <button className="disclaimer-button" onClick={this.toggleModal}>OK</button>
                             </div>
                         </Modal>
                     ) : null

@@ -105,11 +105,12 @@ class Converter extends Component {
         return (
             <div className="converter">
                 <h2>Currency Converter</h2>
-                <form onSubmit={event => event.preventDefault()}>
-                    <label htmlFor="inputAmount">
-                        Type in amount and select currency:
+                <form className="converter-form" onSubmit={event => event.preventDefault()}>
+                    <label className="converter-from__label" htmlFor="inputAmount">
+                        <h4>Type in amount and select currency:</h4>
                         <input
                             id="inputAmount"
+                            className="converter-form__input"
                             placeholder="0.00"
                             value={this.state.inputAmount}
                             onChange={event => this.setInput(event.target.value)}
@@ -117,9 +118,10 @@ class Converter extends Component {
 
                         />
                     </label>
-                    <label htmlFor="inputCurrency">
+                    <label className="converter-from__label" htmlFor="inputCurrency">
                         <select
                             id="inputCurrency"
+                            className="converter-form__select"
                             value={this.state.inputCurrency}
                             onChange={event => this.setInputCurrency(event.target.value)}
                             onBlur={event => this.setInputCurrency(event.target.value)}
@@ -131,19 +133,21 @@ class Converter extends Component {
                         </select>
                     </label>
                 </form>
-                <form onSubmit={event => event.preventDefault()}>
-                    <label htmlFor="outputAmount">
-                        Converted amount:
+                <form className="converter-form" onSubmit={event => event.preventDefault()}>
+                    <label className="converter-from__label" htmlFor="outputAmount">
+                        <h4>Converted amount:</h4>
                         <input
                             id="outputAmount"
+                            className="converter-form__input"
                             placeholder="0.00"
                             value={this.state.outputAmount}
                             readOnly={true}
                         />
                     </label>
-                    <label htmlFor="outputCurrency">
+                    <label className="converter-from__label" htmlFor="outputCurrency">
                         <select
                             id="outputCurrency"
+                            className="converter-form__select"
                             value={this.state.outputCurrency}
                             onChange={event => this.setOutputCurrency(event.target.value)}
                             onBlur={event => this.setOutputCurrency(event.target.value)}

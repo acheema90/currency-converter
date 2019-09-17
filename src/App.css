@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     color: #333;
+    font-size: 16px;
 }
 
 body {
@@ -27,21 +28,45 @@ h1, h2, h3, h4, h5, h6 {
     padding: 16px;
 }
 
+.converter h2 {
+    font-size: 24px;
+}
+
 input, select, textarea {
     padding: 16px;
-    border: 1px solid #fff;
+    border: 1px solid #333;
     margin: 0;
     outline: 0;
     font-weight: 700;
-    color: #999;
+    color: #333;
     background-color: #fff;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.converter-form {
+    padding-bottom: 16px;
+}
+
+.converter-from__label {
+    padding-bottom: 16px;
+}
+
+.converter-from__label h4 {
+    font-weight: normal;
+}
+
+.converter-form__input {
+    width: 150px;
+    margin-right: 20px;
+}
+
+.converter-form__select {
+    width: 100px;
+    height: 45px;
+    background-color: lightgrey;
 }
 
 input:active, input:focus, select:active, select:focus, textarea:active, textarea:focus {
@@ -50,9 +75,9 @@ input:active, input:focus, select:active, select:focus, textarea:active, textare
 }
 
 input:hover, select:hover, textarea:hover {
-    box-shadow: 0 0 2px #b3b3b3;
-    background-color: #f2f2f2;
-    color: #af6cbe;
+    box-shadow: 0 0 2px blue;
+    background-color:white;
+    color: blue;
 }
 
 label, select {
@@ -62,7 +87,6 @@ label, select {
 .disclaimer-parent {
     display: flex;
     width: 260px;
-    margin-top: 20px;
     justify-content: flex-end;
 }
 
@@ -72,6 +96,27 @@ label, select {
 }
 
 .disclaimer:hover {
+    cursor: pointer;
+}
+
+.disclaimer-heading {
+    padding-bottom: 12px;
+}
+
+.disclaimer-text {
+    padding: 12px 0;
+}
+
+.disclaimer-button {
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: blue;
+}
+
+.disclaimer-button:hover {
     cursor: pointer;
 }
 
@@ -101,7 +146,7 @@ label, select {
     text-align: center;
 }
 
-@media (max-width:767px) {s
+@media (max-width:767px) {
     .modal {
         padding: 16px;
         height: 50vh;
