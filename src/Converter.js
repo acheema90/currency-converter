@@ -22,6 +22,11 @@ class Converter extends Component {
         };
     }
 
+    /**
+     * get the latest exchange rates and update them in state
+     * using componentDidMount as we only need to do this once
+     * and not on every input change
+     */
     componentDidMount() {
         ConversionService.getExchangeRates()
             .then((res) => {
