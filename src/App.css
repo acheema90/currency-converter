@@ -97,6 +97,10 @@ label, select {
     outline: none;
 }
 
+.error {
+    color: red;
+}
+
 .disclaimer:hover {
     cursor: pointer;
 }

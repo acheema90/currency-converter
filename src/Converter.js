@@ -6,9 +6,9 @@ class Converter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputAmount: '0.00',
+            inputAmount: '',
             inputCurrency: 'CAD',
-            outputAmount: '0.00',
+            outputAmount: '',
             outputCurrency: 'USD',
             currencyOptions: [
                 'CAD',
@@ -19,7 +19,9 @@ class Converter extends Component {
                 CAD: 1,
                 USD: 1,
                 EUR: 1
-            }
+            },
+            showError: false,
+            errorMsg: ''
         };
     }
 
@@ -61,19 +63,21 @@ class Converter extends Component {
             const outputRate = this.state.exchangeRates[outputCurr];
             const result = ((outputRate / inputRate) * amount).toFixed(2);
             this.setState({
-                outputAmount: result
+                outputAmount: result,
+                showError: false
+            });
+        } else {
+            this.setState({
+                errorMsg: 'amount cannot be 0',
+                showError: true
             });
         }
     }
 
     setInput = (value) => {
-        let amount = parseFloat(value);
-        if(!Number.isNaN(amount)) {
-            amount = amount.toFixed(2);
-            this.setState({
-                inputAmount: amount
-            });
-        }
+        this.setState({
+            inputAmount: value
+        });
     }
 
     /**
@@ -102,10 +106,35 @@ class Converter extends Component {
     }
 
     updateOutputAmount = (amount) => {
-        const amt = parseFloat(amount);
-        if(!Number.isNaN(amount)) {
+        if (this.isInputValid(amount)) {
+            amount = parseFloat(amount);
             this.convertCurrency(this.state.inputCurrency, this.state.outputCurrency, amount);
         }
+    }
+
+    /**
+     * @param {*} input the text input value
+     * validates the input
+     * @returns true if valid, false otherwise
+     * if false, sets state.showError and state.errorMsg
+     */
+    isInputValid(input) {
+        let isValid = true;
+        if (isNaN(Number(input))) {
+            this.setState({
+                showError: true,
+                errorMsg: 'Please input a number and try again.'
+            });
+            isValid = false;
+        }
+        else if (Number(input) < 0 ) {
+            this.setState({
+                showError: true,
+                errorMsg: 'No negative values allowed. Try again.'
+            });
+            isValid = false;
+        }
+        return isValid;
     }
     
     render() {
@@ -140,6 +169,14 @@ class Converter extends Component {
                         </select>
                     </label>
                 </form>
+                {
+                    this.state.showError ? (
+                        <div className="error">
+                            {this.state.errorMsg}
+                        </div>
+                    )
+                    : null
+                }
                 <form className="converter-form" onSubmit={event => event.preventDefault()}>
                     <label className="converter-from__label" htmlFor="outputAmount">
                         <h4>Converted amount:</h4>
