@@ -36,38 +36,63 @@ class Converter extends Component {
                         }
                     });
                 }
-            });
-    }
-
-    componentDidUpdate() {
-        this.convertCurrency(this.state.inputCurrency, this.state.outputCurrency, this.state.inputAmount);
+                else {
+                    console.error('Could not fetch exchange reates');
+                }
+            }, (err) => console.error(err));
     }
 
     convertCurrency = (inputCurr, outputCurr, amount) => {
         if (amount > 0) {
-            console.log('TBD');
+            const inputRate = this.state.exchangeRates[inputCurr];
+            const outputRate = this.state.exchangeRates[outputCurr];
+            const result = ((outputRate / inputRate) * amount).toFixed(2);
+            this.setState({
+                outputAmount: result
+            });
         }
     }
 
     setInput = (value) => {
-        const amount = parseFloat(value);
+        let amount = parseFloat(value);
         if(!Number.isNaN(amount)) {
+            amount = amount.toFixed(2);
             this.setState({
                 inputAmount: amount
             });
         }
     }
 
+    /**
+     * call convertCurrency when currency slection is updated
+     */
+    currencyUpdateHandler() {
+        this.convertCurrency(this.state.inputCurrency, this.state.outputCurrency, this.state.inputAmount);
+    }
+
     setInputCurrency = (value) => {
-        this.setState({
-            inputCurrency: value
-        });
+        this.setState(
+            {
+                inputCurrency: value
+            },
+            this.currencyUpdateHandler
+        );
     }
 
     setOutputCurrency = (value) => {
-        this.setState({
-            outputCurrency: value
-        });
+        this.setState(
+            {
+                outputCurrency: value
+            },
+            this.currencyUpdateHandler
+        );
+    }
+
+    updateOutputAmount = (amount) => {
+        const amt = parseFloat(amount);
+        if(!Number.isNaN(amount)) {
+            this.convertCurrency(this.state.inputCurrency, this.state.outputCurrency, amount);
+        }
     }
     
     render() {
@@ -82,6 +107,8 @@ class Converter extends Component {
                             placeholder="0.00"
                             value={this.state.inputAmount}
                             onChange={event => this.setInput(event.target.value)}
+                            onBlur={event => this.updateOutputAmount(event.target.value)}
+
                         />
                     </label>
                     <label htmlFor="inputCurrency">
