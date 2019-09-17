@@ -1,26 +1,61 @@
 import React, { Component } from 'react';
+import ConversionService from './ConversionService';
 
 class Converter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputAmount: 0.00,
+            inputAmount: '0.00',
             inputCurrency: 'CAD',
-            outputAmount: 0.00,
+            outputAmount: '0.00',
             outputCurrency: 'USD',
             currencyOptions: [
                 'CAD',
                 'USD',
                 'EUR'
-            ]
+            ],
+            exchangeRates: {
+                CAD: 1,
+                USD: 1,
+                EUR: 1
+            }
         };
+    }
+
+    componentDidMount() {
+        ConversionService.getExchangeRates()
+            .then((res) => {
+                console.log(res);
+                if(res.data && res.data.rates) {
+                    const rates = res.data.rates;
+                    this.setState({
+                        exchangeRates: {
+                            CAD: rates.CAD,
+                            USD: rates.USD,
+                            EUR: rates.EUR
+                        }
+                    });
+                }
+            });
+    }
+
+    componentDidUpdate() {
+        this.convertCurrency(this.state.inputCurrency, this.state.outputCurrency, this.state.inputAmount);
+    }
+
+    convertCurrency = (inputCurr, outputCurr, amount) => {
+        if (amount > 0) {
+            console.log('TBD');
+        }
     }
 
     setInput = (value) => {
         const amount = parseFloat(value);
-        this.setState({
-            inputAmount: amount
-        });
+        if(!Number.isNaN(amount)) {
+            this.setState({
+                inputAmount: amount
+            });
+        }
     }
 
     setInputCurrency = (value) => {
@@ -44,9 +79,6 @@ class Converter extends Component {
                         Type in amount and select currency:
                         <input
                             id="inputAmount"
-                            type="number"
-                            min="0.00"
-                            step="0.01"
                             placeholder="0.00"
                             value={this.state.inputAmount}
                             onChange={event => this.setInput(event.target.value)}
@@ -61,7 +93,7 @@ class Converter extends Component {
                         >
                         {
                             this.state.currencyOptions
-                                .map(item => <option value={item}>{item}</option>)
+                                .map(item => <option value={item} key={item}>{item}</option>)
                         }
                         </select>
                     </label>
@@ -71,11 +103,9 @@ class Converter extends Component {
                         Converted amount:
                         <input
                             id="outputAmount"
-                            type="number"
-                            min="0.00"
-                            step="0.01"
                             placeholder="0.00"
                             value={this.state.outputAmount}
+                            readOnly={true}
                         />
                     </label>
                     <label htmlFor="outputCurrency">
@@ -87,7 +117,7 @@ class Converter extends Component {
                         >
                         {
                             this.state.currencyOptions
-                                .map(item => <option value={item}>{item}</option>)
+                                .map(item => <option value={item} key={item}>{item}</option>)
                         }
                         </select>
                     </label>
