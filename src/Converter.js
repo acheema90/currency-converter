@@ -103,7 +103,7 @@ class Converter extends Component {
     
     render() {
         return (
-            <div>
+            <div className="converter">
                 <h2>Currency Converter</h2>
                 <form onSubmit={event => event.preventDefault()}>
                     <label htmlFor="inputAmount">

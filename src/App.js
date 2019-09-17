@@ -4,7 +4,7 @@ import Converter from './Converter';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="container">
       <Converter />
     </div>
   );
