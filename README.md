@@ -1,4 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## IMPORTANT
+To run the deployed app on gh-pages must click on 'load unsafe scripts' in Chrome.
+This is because Chrome blocks http on https, and the Fixer API is only http in free version.
+ => RUN the app here: https://acheema90.github.io/currency-converter/
+
+## Notes
+This project was scaffolded with create-react-app (react-scripts).
+In implementing the requirements, I observed that a single-page React App was the best solution.
+No need for Redux or any other state-management libraries.
+Only major external dependency besides the react-script defaults is axios, which is an excellent library for ajax requests.
+To meet the time constraints all the css is App.css; usually, I use proper SCSS with a meaningful directory stcucture.
+The Directory Structure is flat: 
+    all the source code is in src.
+    the index.html and favicon are in public.
+    Build output in build, and so on.
+Within src, the app is bootsrapped from index.js and App.js.
+The bulk of the code and template is in Converter.js, which can be re-factored into smaller views using functional react components.
+Constants.js has all the config needed for ConversionService.js, which fetches data from the Fixer API.
+Used a React Portal to create the Modal.js which is used to show the Disclaimer in Disclaimer.js.
+No explicit content was given for disclaimer, so I took the first question from https://fixer.io/faq as my disclaimer content.
+
+## TODO
+Unit testing.
+Refactor css into proper SCSS with meaningful hierarchy.
+Refactor the template logic in Converter.js into separate functional React Components.
+Re-organize the src folder into components and services.
 
 ## Available Scripts
 
@@ -12,10 +38,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -23,46 +45,9 @@ Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### `npm run deploy`
+This will deploy app to gh-pages.
+Which has already been done.
+Link here:
+https://acheema90.github.io/currency-converter/
