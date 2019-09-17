@@ -9,8 +9,7 @@ class Disclaimer extends Component {
         };
     }
 
-    toggleModal = (event) => {
-        event.preventDefault();
+    toggleModal = () => {
         this.setState({
           showModal: !this.state.showModal
         });
@@ -19,12 +18,12 @@ class Disclaimer extends Component {
     render() {
         return (
             <div className="disclaimer-parent">
-                <a 
+                <button 
                     className="disclaimer"
                     onClick={this.toggleModal}
                 >
                     Disclaimer
-                </a>
+                </button>
                 {
                     this.state.showModal ? (
                         <Modal>

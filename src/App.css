@@ -93,6 +93,8 @@ label, select {
 .disclaimer {
     text-decoration: underline;
     color: blue;
+    border: none;
+    outline: none;
 }
 
 .disclaimer:hover {
