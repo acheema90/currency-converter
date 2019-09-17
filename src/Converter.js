@@ -41,13 +41,23 @@ class Converter extends Component {
                             CAD: rates.CAD,
                             USD: rates.USD,
                             EUR: rates.EUR
-                        }
+                        },
+                        showError: false
                     });
                 }
                 else {
-                    console.error('Could not fetch exchange reates');
+                    this.handleApiError('Could not fetch data')
                 }
-            }, (err) => console.error(err));
+            }, (err) => this.handleApiError(err));
+    }
+
+    handleApiError= (err) => {
+        const msg = err ? err : 'Error fetching data';
+        this.setState({
+            showError: true,
+            errorMsg: msg
+        });
+        console.error(msg);
     }
 
     /**
