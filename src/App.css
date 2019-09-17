@@ -107,6 +107,7 @@ label, select {
 
 .disclaimer-text {
     padding: 12px 0;
+    margin: 0;
 }
 
 .disclaimer-button {
