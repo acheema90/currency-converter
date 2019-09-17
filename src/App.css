@@ -1,0 +1,14 @@
+.disclaimer-parent {
+    display: flex;
+    width: 450px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.disclaimer {
+    text-decoration: underline;
+}
+
+.disclaimer:hover {
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ConversionService from './ConversionService';
+import Disclaimer from './Disclaimer';
 
 class Converter extends Component {
     constructor(props) {
@@ -154,6 +155,7 @@ class Converter extends Component {
                         </select>
                     </label>
                 </form>
+                <Disclaimer />
             </div>
         );
     }
