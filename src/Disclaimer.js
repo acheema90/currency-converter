@@ -9,7 +9,8 @@ class Disclaimer extends Component {
         };
     }
 
-    toggleModal = () => {
+    toggleModal = (event) => {
+        event.preventDefault();
         this.setState({
           showModal: !this.state.showModal
         });
@@ -18,17 +19,22 @@ class Disclaimer extends Component {
     render() {
         return (
             <div className="disclaimer-parent">
-                <div 
+                <a 
                     className="disclaimer"
                     onClick={this.toggleModal}
                 >
                     Disclaimer
-                </div>
+                </a>
                 {
                     this.state.showModal ? (
                         <Modal>
                             <div>
-                                Show disclaimer stuff
+                                <h2>Where is the data coming from?</h2>
+                                <p>
+                                    Exchange rate data delivered by the Fixer API is collected from over 15 reliable data sources,
+                                    every minute. Sources include banks and financial data providers.
+                                </p>
+                                <button onClick={this.toggleModal}>OK</button>
                             </div>
                         </Modal>
                     ) : null
