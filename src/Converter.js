@@ -48,6 +48,13 @@ class Converter extends Component {
             }, (err) => console.error(err));
     }
 
+    /**
+     * performs the currency conversion
+     * @param inputCurr the input currency string like 'CAD'
+     * @param outputCurr the output currency string like 'USD'
+     * @param amount the amount that needs to be converted like 25
+     * will update state.outputAmount with the result
+     */
     convertCurrency = (inputCurr, outputCurr, amount) => {
         if (amount > 0) {
             const inputRate = this.state.exchangeRates[inputCurr];
