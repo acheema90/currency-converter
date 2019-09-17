@@ -6,6 +6,9 @@
 
  => RUN the app here: https://acheema90.github.io/currency-converter/
 
+Video of working app:
+https://www.loom.com/share/7d8fa612cd2b4348b86c9f8c9037bcdf
+
 ## Notes
 This project was scaffolded with create-react-app (react-scripts).
 
